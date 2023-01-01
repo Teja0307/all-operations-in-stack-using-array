@@ -1,0 +1,107 @@
+#include<iostream>
+using namespace std;
+#define MAX 4
+int stack_arr[MAX];
+int top=-1;
+
+int isfull(){
+    if(top==MAX-1)
+      return 1;
+    else
+      return 0;
+}
+
+
+int isempty(){
+    if(top==-1)
+      return 1;
+    else
+      return 0;
+}
+
+void push(int data){
+    if(isfull())
+    {
+        cout<<"stack overflow\n";
+        return;
+    }
+    top=top+1;
+    stack_arr[top]=data;
+      
+}
+
+int pop(){
+    int value;
+    if(isempty())
+    {
+        cout<<"stack underflow\n";
+        exit(1);
+    }
+    value=stack_arr[top];
+    top=top-1;
+    return value;
+}
+
+
+
+int peek(){
+    if(isempty())
+    {
+        cout<<"stack underflow\n";
+        exit(1);
+    }
+    return stack_arr[top];
+}
+
+
+void print(){
+    int i;
+    if(top==-1)
+    {
+        cout<<"stack underflow\n";
+        return;
+    }
+    for(i=top;i>=0;i--)
+    {
+        cout<<stack_arr[i]<<" ";
+    }
+}
+
+int main()
+{
+    int data,choice;
+    while(1)
+    {
+        cout<<"\n";
+        cout<<"1.push an element\n";
+        cout<<"2.pop an element\n";
+        cout<<"3.top element\n";
+        cout<<"4.print all the lements in the stack\n";
+        cout<<"5.Quit\n";
+        cout<<"Enter your choice:";
+        cin>>choice;
+        switch(choice){
+            case 1:
+                  cout<<"Enter the element to be pushed:";
+                  cin>>data;
+                  push(data);
+                  break;
+            case 2:
+                 data=pop();
+                 cout<<"Element poped out:"<<data;
+                 break;
+            case 3:
+                 cout<<"Top element:"<<peek();
+                 break;
+            case 4:
+                 cout<<"Elements in the stack:";
+                 print();
+                 break;
+            case 5:
+                 exit(1);
+            default:
+               cout<<"No choice\n";
+        }
+    }
+    return 0;
+}
